@@ -23,7 +23,7 @@ function createNewPipe(){
     pipe_top.setAttribute("style","height:"+parseInt(getRandomArbitrary(20,60))+"%");
     let pipe_bottom = document.createElement("div")
     pipe_bottom.classList.add("pipe-bottom","obs")
-    pipe_bottom.setAttribute("style","top:"+ ( 20 + parseInt(pipe_top.style.height.replace("%","")))+"%; height:"+ (80 - parseInt(pipe_top.style.height.replace("%","")))+"%");
+    pipe_bottom.setAttribute("style","top:"+ ( 25 + parseInt(pipe_top.style.height.replace("%","")))+"%; height:"+ (75 - parseInt(pipe_top.style.height.replace("%","")))+"%");
     bg.append(pipe_top)
     bg.append(pipe_bottom)
 }
@@ -39,10 +39,10 @@ function elementsOverlap(el1, el2) {
     const domRect2 = el2.getBoundingClientRect();
 
     return !(
-        domRect1.top > domRect2.bottom ||
-        domRect1.right < domRect2.left ||
-        domRect1.bottom < domRect2.top ||
-        domRect1.left > domRect2.right
+        domRect1.top > domRect2.bottom  - 10||
+        domRect1.right < domRect2.left + 10 ||
+        domRect1.bottom < domRect2.top  + 10||
+        domRect1.left > domRect2.right - 10
     );
 }
 
