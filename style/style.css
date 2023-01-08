@@ -43,6 +43,8 @@ body{
     background-image: url("../imgs/gameover.png");
     position: absolute;
     background-size: cover;
+    max-height: 76px;
+    max-width: 332px;
     top: 20vh;
     width: 50vw;
     height: 6vh;
@@ -60,17 +62,20 @@ body{
     height: 18vh;
     min-height: auto;
     z-index: 1000;
+    max-height: 150px;
+    max-width: 300px;
     left: 16vw;
 }
 
 #menu_score{
     position: absolute;
-    right: 10vw;
-    top: 4.5vh;
+    right: 14%;
+    top: 25%;
     color: white;
     font-family: 'Common Pixel', sans-serif;
     font-size: 30px;
-
+    max-height: 150px;
+    max-width: 300px;
 }
 
 #resume{
@@ -82,6 +87,8 @@ body{
     height: 11.3vh;
     min-height: auto;
     z-index: 1000;
+    max-width: 160px;
+    max-height: 90px;
     left: 31vw;
     background-color: transparent;
     border: 0;
@@ -121,6 +128,7 @@ body{
 #score{
     position: absolute;
     width: 100vw;
+    max-width: 700px;
     text-align: center;
     z-index: 1000;
     font-size: 30px;
@@ -165,5 +173,28 @@ body{
     }
     to{
         left: -50%;
+    }
+}
+
+@media screen and (min-width: 768px){
+    #game-over{
+        left: 30%;
+    }
+
+    #container{
+        left: 31%;
+    }
+
+    #menu_score{
+
+    }
+
+    #menu{
+
+    }
+
+    #resume{
+        top: 65%;
+        left: 41%;
     }
 }
