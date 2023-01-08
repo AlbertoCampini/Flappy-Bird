@@ -1,21 +1,52 @@
-const pipe_bottom = document.getElementById("pipe-bottom")
-const pipe_top = document.getElementById("pipe-top")
+const menu = document.getElementById("menu")
+const play = document.getElementById("resume")
 const bird = document.getElementById("bird")
 const bg = document.getElementById("bg")
 const base = document.getElementById("base")
+
 let flag_fly = false
 let count = 10
 let gravity = 0.5
 let score = 0
+let lose
+let end_game = false
 
 let velocity = 2
-
-createNewPipe()
 
 function getRandomArbitrary(min, max) {
     return Math.random() * (max - min) + min;
 }
 
+createNewPipe()
+
+let game = setInterval( ()=>{
+    fly()
+    movePipe()
+    removePipe()
+    if (checkCollision()){
+        clearInterval(game);
+        clearInterval(new_pipe);
+        bird.classList.add("bird_fall")
+        base.classList.add("paused")
+        end_game = true
+        lose = setInterval(loseAnimation,10)
+        setTimeout(manageMenu,1500)
+    }
+    calcScore()
+
+},10)
+
+let new_pipe = setInterval(()=>{
+    createNewPipe()
+}, 2000)
+
+function manageMenu(){
+    menu.classList.remove("d-none")
+    document.getElementById("score").innerHTML = ""
+    document.getElementById("menu_score").innerHTML = score
+    clearInterval(lose);
+
+}
 
 function createNewPipe(){
     let pipe_top = document.createElement("div")
@@ -75,38 +106,21 @@ function removePipe(){
     })
 }
 
-setInterval( ()=>{
-    movePipe()
-    removePipe()
-    if (checkCollision())
-        window.location.reload()
-    calcScore()
-
-},10)
-
-setInterval(()=>{
-    createNewPipe()
-}, 2000)
-
-setInterval(() => {
-    let pipe_top_top = parseInt(window.getComputedStyle(pipe_top).getPropertyValue("bottom"));
-    let pipe_left = parseInt(window.getComputedStyle(pipe_top).getPropertyValue("left"));
-    let pipe_bottom_top = parseInt(window.getComputedStyle(pipe_bottom).getPropertyValue("top"));
-    let pipe_right = parseInt(window.getComputedStyle(pipe_bottom).getPropertyValue("right"));
-
-    let x = parseInt(window.getComputedStyle(bird).getPropertyValue("top"));
-    let x_left = parseInt(window.getComputedStyle(bird).getPropertyValue("left"));
-    let x_right = parseInt(window.getComputedStyle(bird).getPropertyValue("right"));
-
-    if(x_left >= pipe_left && x_right <=pipe_right && (x <= pipe_top_top || x >= pipe_bottom_top)){
-        console.log(x, pipe_top_top, pipe_bottom_top)
-        gravity = 20
-        window.location.reload();
-    }
 
 
+
+
+function loseAnimation(){
+        let position = parseInt(window.getComputedStyle(bird).getPropertyValue("top"));
+            bird.style.top = (position + 5)+"px";
+
+
+}
+
+function fly(){
+    let position = parseInt(window.getComputedStyle(bird).getPropertyValue("top"));
     if(!flag_fly){
-        bird.style.top=(x + gravity)+"px";
+        bird.style.top= (position + gravity)+"px";
         if(gravity < 3) {
             gravity += 0.2 * gravity
         }
@@ -116,13 +130,13 @@ setInterval(() => {
         }
         count = 10
     }else{
-        bird.style.top = (x - count) + "px";
+        bird.style.top = (position - count) + "px";
         count --
         if (count === 0)
             flag_fly = false
     }
+}
 
-}, 10);
 
 function jump(){
     count = 10
@@ -132,6 +146,10 @@ function jump(){
     flag_fly = true
 }
 
-document.addEventListener('click', event =>{
+document.addEventListener('click', () =>{
+    if(!end_game)
         jump();
+})
+play.addEventListener('click', () =>{
+    window.location.reload()
 })

@@ -35,6 +35,58 @@ body{
     animation: move 2s linear infinite;
 }
 
+.d-none{
+    display: none;
+}
+
+#game-over{
+    background-image: url("../imgs/gameover.png");
+    position: absolute;
+    background-size: cover;
+    top: 20vh;
+    width: 50vw;
+    height: 5vh;
+    min-height: auto;
+    z-index: 1000;
+    left: 25vw;
+}
+
+#container{
+    background-image: url('../imgs/menu.png');
+    position: absolute;
+    background-size: cover;
+    top: 30vh;
+    width: 68vw;
+    height: 16vh;
+    min-height: auto;
+    z-index: 1000;
+    left: 16vw;
+}
+
+#menu_score{
+    position: absolute;
+    right: 9vw;
+    top: 4vh;
+    color: white;
+    font-family: 'Common Pixel', sans-serif;
+    font-size: 30px;
+
+}
+
+#resume{
+    background-image: url('../imgs/play.png');
+    position: absolute;
+    background-size: cover;
+    top: 50vh;
+    width: 38vw;
+    height: 10vh;
+    min-height: auto;
+    z-index: 1000;
+    left: 31vw;
+    background-color: transparent;
+    border: 0;
+}
+
 .pipe-top{
     position: absolute;
     width: 70px;
@@ -60,6 +112,10 @@ body{
 .bird_jump{
     transform: rotate(-45deg);
 
+}
+
+.paused {
+    animation-play-state: paused !important;
 }
 
 #score{
