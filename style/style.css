@@ -45,7 +45,7 @@ body{
     background-size: cover;
     top: 20vh;
     width: 50vw;
-    height: 5vh;
+    height: 6vh;
     min-height: auto;
     z-index: 1000;
     left: 25vw;
@@ -57,7 +57,7 @@ body{
     background-size: cover;
     top: 30vh;
     width: 68vw;
-    height: 16vh;
+    height: 17vh;
     min-height: auto;
     z-index: 1000;
     left: 16vw;
@@ -65,7 +65,7 @@ body{
 
 #menu_score{
     position: absolute;
-    right: 9vw;
+    right: 10vw;
     top: 4vh;
     color: white;
     font-family: 'Common Pixel', sans-serif;
@@ -79,7 +79,7 @@ body{
     background-size: cover;
     top: 50vh;
     width: 38vw;
-    height: 10vh;
+    height: 11vh;
     min-height: auto;
     z-index: 1000;
     left: 31vw;
